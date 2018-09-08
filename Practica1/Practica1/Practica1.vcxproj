@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{08D9C8FC-208C-4362-8B51-D7212E2401F8}</ProjectGuid>
+    <ProjectGuid>{F6464415-4063-41B6-BB93-5CAA40369EE7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Histograma</RootNamespace>
+    <RootNamespace>Practica1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -89,12 +89,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Charly\source\repos\Genetic-Algorithms\Histograma\SDL2-2.0.8\include;$(MSBuildStartupDirectory)\SDL2-2.0.8\include;$(MSBuildStartupDirectory)\SDL2_ttf-2.0.14\include;$(MSBuildStartupDirectory)\plot-sdl-lib\plotsdl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\SDL2-2.0.8\include;$(MSBuildProjectDirectory)\SDL2_ttf-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\Charly\source\repos\Genetic-Algorithms\Histograma\SDL2-2.0.8\lib\x86;$(MSBuildStartupDirectory)\SDL2-2.0.8\lib\x86;$(MSBuildStartupDirectory)\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\SDL2_ttf-2.0.14\lib\x86;$(MSBuildProjectDirectory)\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -120,15 +120,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Charly\source\repos\Genetic-Algorithms\Histograma\SDL2-2.0.8\include;$(MSBuildStartupDirectory)\SDL2-2.0.8\include;$(MSBuildStartupDirectory)\SDL2_ttf-2.0.14\include;$(MSBuildStartupDirectory)\plot-sdl-lib\plotsdl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\SDL2-2.0.8\include;$(MSBuildProjectDirectory)\SDL2_ttf-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\Charly\source\repos\Genetic-Algorithms\Histograma\SDL2-2.0.8\lib\x86;$(MSBuildStartupDirectory)\SDL2-2.0.8\lib\x86;$(MSBuildStartupDirectory)\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\SDL2_ttf-2.0.14\lib\x86;$(MSBuildProjectDirectory)\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,13 +149,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="llist.h" />
+    <ClInclude Include="plot.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="linked_list.c" />
     <ClCompile Include="plot.c" />
     <ClCompile Include="Source.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="llist.h" />
-    <ClInclude Include="plot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
