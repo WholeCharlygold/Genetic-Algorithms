@@ -28,9 +28,10 @@
 	 @version 0.1
  */
 #include "stdio.h"
+#include "time.h"
 #include "plot.h"
 #include "llist.h"
-#include <stdlib.h>
+#include "stdlib.h"
 
 int main(int argc, char* argv[])
 {
@@ -40,7 +41,14 @@ int main(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
-	int a[10] = { 10,2,8,15,30,29,45,1,5,4 };
+
+
+	int a[10];
+	int i;
+	srand(time(NULL));
+	for (i = 0; i < 10; i++) {
+		a[i] = rand()%50;
+	}
 
 	//populate caption list
 	captionlist caption_list = NULL;
