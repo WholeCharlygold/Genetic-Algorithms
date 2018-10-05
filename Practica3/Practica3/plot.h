@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 /**
  * The MIT License (MIT)
  *
@@ -38,8 +39,8 @@
 #	include "SDL_ttf.h"
 #	define APP_NAME "plot_sdl_impl"
 #else
-#include "SDL2-2.0.8/include/SDL.h"
-#	include "SDL2_ttf-2.0.14/include/SDL_ttf.h"
+#include "SDL.h"
+#	include "SDL_ttf.h"
 #endif
 
 #include "llist.h"

@@ -36,7 +36,7 @@
 #ifdef __ANDROID__
 #	include "SDL.h"
 #else
-#include "SDL2-2.0.8/include/SDL.h"
+#include "SDL.h"
 #endif
 
  /**

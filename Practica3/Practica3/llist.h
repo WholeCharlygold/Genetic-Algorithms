@@ -37,7 +37,7 @@
 #	include "SDL.h"
 #else
 
-#include "SDL2-2.0.8/include/SDL.h"
+#include "SDL.h"
 #endif
 
  //--------------CAPTION STRUCT --------------

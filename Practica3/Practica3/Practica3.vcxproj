@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F6464415-4063-41B6-BB93-5CAA40369EE7}</ProjectGuid>
+    <ProjectGuid>{188A3B72-F79A-4EC2-BC4E-7A837BEC22BF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Practica1</RootNamespace>
+    <RootNamespace>Practica3</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -89,13 +89,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Maria Mireya\source\repos\Genetic-Algorithms\Practica1\Practica1\SDL2-2.0.8\include;C:\Users\Maria Mireya\source\repos\Genetic-Algorithms\Practica1\Practica1\SDL2_ttf-2.0.14\include;$(MSBuildProjectDirectory)\SDL2_ttf-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Maria Mireya\Downloads\SDL2_ttf-2.0.14\include;C:\Users\Maria Mireya\Downloads\SDL2-2.0.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\Maria Mireya\Downloads\SDL2_ttf-2.0.14\lib\x86;C:\Users\Maria Mireya\Downloads\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Maria Mireya\Downloads\SDL2-2.0.8\lib\x86;C:\Users\Maria Mireya\Downloads\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_ttf.lib;SDL2main.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,15 +120,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Maria Mireya\source\repos\Genetic-Algorithms\Practica1\Practica1\SDL2-2.0.8\include;C:\Users\Maria Mireya\source\repos\Genetic-Algorithms\Practica1\Practica1\SDL2_ttf-2.0.14\include;$(MSBuildProjectDirectory)\SDL2_ttf-2.0.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Maria Mireya\Downloads\SDL2_ttf-2.0.14\include;C:\Users\Maria Mireya\Downloads\SDL2-2.0.8\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\Maria Mireya\Downloads\SDL2_ttf-2.0.14\lib\x86;C:\Users\Maria Mireya\Downloads\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Maria Mireya\Downloads\SDL2-2.0.8\lib\x86;C:\Users\Maria Mireya\Downloads\SDL2_ttf-2.0.14\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_ttf.lib;SDL2main.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,13 +149,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="llist.h" />
-    <ClInclude Include="plot.h" />
+    <ClCompile Include="FuncionesBinarias.cpp" />
+    <ClCompile Include="Graficar.c" />
+    <ClCompile Include="linked_list.c" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="plot.c" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RuletaAG.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="linked_list.c" />
-    <ClCompile Include="plot.c" />
-    <ClCompile Include="Source.c" />
+    <ClInclude Include="llist.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="mainc.h" />
+    <ClInclude Include="plot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
