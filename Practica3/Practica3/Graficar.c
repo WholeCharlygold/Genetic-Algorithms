@@ -10,7 +10,7 @@
 
 
 
-int graficar(int argc, float *maximos, float * minimos)
+int graficar(int argc, float *maximos, float * minimos, float max)
 {
 	if (argc != 2)
 	{
@@ -56,9 +56,9 @@ int graficar(int argc, float *maximos, float * minimos)
 	//params.caption_list = caption_list_min; //Se le pasa la lista de label que creamos antes
 	params.coordinate_list = coordinate_list; //Se le pasa la lista de puntos
 	params.scale_x = 1; //Escala del eje X
-	params.scale_y = 100; //Escala del eje Y
+	params.scale_y = 1; //Escala del eje Y
 	params.max_x = NUMG; //Maximo del eje X
-	params.max_y =1000; //Maxicmo del eje Y
+	params.max_y =max; //Maxicmo del eje Y
 
 	int ret = plot_graph(&params); //Inicia el histograma
 

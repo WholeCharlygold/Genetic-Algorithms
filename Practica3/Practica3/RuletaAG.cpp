@@ -221,14 +221,14 @@ void AG_Ruleta(int ** poblacion_inicial) {
 		//display(desendencia);
 		nueva_poblacion = mutacion(desendencia);
 		//display(nueva_poblacion);
-		lista_de_maximos[i] =maximo( aptitud(nueva_poblacion));
-		lista_de_minimos[i] = minimo(aptitud(nueva_poblacion));
+		lista_de_maximos[i] =maximo_float( probabilidad(nueva_poblacion))*100;
+		lista_de_minimos[i] = minimo_float(probabilidad(nueva_poblacion)) * 100;
 
 		std::cout << i+1<< ".- "<<lista_de_maximos[i] <<"//"<< lista_de_minimos[i]<<std::endl;
 		//display(nueva_poblacion);
 	}
 	//display(nueva_poblacion);
-	 graficar(2, lista_de_maximos,lista_de_minimos);
+	 graficar(2, lista_de_maximos,lista_de_minimos,maximo_float(lista_de_maximos));
 
 	
 
