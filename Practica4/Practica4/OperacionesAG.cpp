@@ -3,9 +3,10 @@ extern "C" {
 #include "mainc.h"
 }
 
+
 int * valor(int ** poblacion) {
 	int * resultado;
-	int valor_x=0;
+	int valor_x = 0;
 	resultado = (int *)malloc(sizeof(int)*TAMP);
 
 	for (int i = 0; i < TAMP; i++) {
@@ -28,20 +29,21 @@ float * probabilidad(int ** poblacion) {
 	}
 	for (int i = 0; i < TAMP; i++) {
 		proba[i] = aptitud(poblacion)[i] / suma;
-	//	std::cout << proba[i] << std::endl;
+		//	std::cout << proba[i] << std::endl;
 	}
 	return proba;
 }
 
-int * aptitud(int ** poblacion) {
-	
-	int * resultado;
-	int * x=valor(poblacion);
-	resultado = (int *)malloc(sizeof(int)*TAMP);
+float * aptitud(int ** poblacion) {
+
+	float * resultado;
+	int * x = valor(poblacion);
+	resultado = (float *)malloc(sizeof(float)*TAMP);
 
 
 	for (int i = 0; i < TAMP; i++) {
-		resultado[i] = x[i] * x[i]; //APTITUD F(X)
+		float rad = x[i] * PI / 180;
+		resultado[i] = abs((x[i]-5)/(2+sin(rad))); //APTITUD F(X)
 	//	std::cout << resultado[i] << std::endl;
 	}
 	return resultado;
@@ -58,6 +60,11 @@ float maximo_float(float * aptitud) {
 	max_value = *std::max_element(aptitud, aptitud + TAMP);
 	return max_value;
 }
+float maximo_de_maximos(float * aptitud) {
+	float max_value;
+	max_value = *std::max_element(aptitud, aptitud + NUMG);
+	return max_value;
+}
 
 int minimo(int * aptitud) {
 
@@ -72,7 +79,7 @@ float minimo_float(float * aptitud) {
 	return min_value;
 }
 
-int * Ruleta(int * fitness) {
+int * Ruleta(float * fitness) {
 
 	float* probabilidad;
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -100,10 +107,10 @@ int * Ruleta(int * fitness) {
 	}
 	//std::cout << "PADRES_INDEX" << std::endl;
 	for (int i = 0; i < TAMP; i++) {
-		float dice_roll = distribution(generator); 
+		float dice_roll = distribution(generator);
 		if (probabilidad_acumulada[0] > dice_roll) {
 			padres[i] = 0;
-		//	std::cout << padres[i] << std::endl;
+			//	std::cout << padres[i] << std::endl;
 		}
 		else {
 			for (int j = 0; j < TAMP; j++) {
@@ -118,9 +125,9 @@ int * Ruleta(int * fitness) {
 			}
 
 		}
-		
 
-		
+
+
 
 
 	}
@@ -134,13 +141,13 @@ int ** seleccion_padres(int * padres_index, int ** poblacion) {
 	for (int i = 0; i < TAMP; i++) {
 		padres[i] = (int *)malloc(sizeof(int)*NUMA);
 	}
-	
+
 
 	for (int i = 0; i < TAMP; i++) {
 		for (int j = 0; j < NUMA; j++) {
 			padres[i][j] = poblacion[padres_index[i]][j];
 		}
-		
+
 
 	}
 	return padres;
@@ -153,14 +160,14 @@ int ** punto_de_cruza(int ** poblacion) {
 	std::uniform_int_distribution<int> distribution(0, NUMA - 1);
 	int ** desendencia = Crear();
 
-	for (int i = 0; i < TAMP; i=i+2) {
+	for (int i = 0; i < TAMP; i = i + 2) {
 		int dice_roll = distribution(generator);
 		//std::cout << dice_roll << std::endl;
 		for (int j = 0; j < NUMA; j++) {
-			
+
 			if (j <= dice_roll) {
 				desendencia[i][j] = poblacion[i][j];
-				desendencia[i + 1][j] = poblacion[i+1][j];
+				desendencia[i + 1][j] = poblacion[i + 1][j];
 			}
 			else {
 				desendencia[i][j] = poblacion[i + 1][j];
@@ -170,7 +177,7 @@ int ** punto_de_cruza(int ** poblacion) {
 
 		}
 	}
-	
+
 	//display(poblacion);
 	//display(desendencia);
 	return desendencia;
@@ -181,7 +188,7 @@ int ** punto_de_cruza(int ** poblacion) {
 
 int ** mutacion(int ** desendencia) {
 
-	float individuos_mutados = TAMP * .1;
+	float individuos_mutados = TAMP * MUTA;
 	int ** mutantes = Crear();
 	//display(desendencia);
 	srand(time(NULL));
@@ -189,11 +196,11 @@ int ** mutacion(int ** desendencia) {
 	for (int cont = 0; cont < round(individuos_mutados); cont++) {
 
 		int dice_roll = std::rand() % (TAMP - 1) + 1;
-
+		
 		int dice_roll2 = std::rand() % (NUMA - 1) + 1;
 
 		desendencia[dice_roll][dice_roll2] = desendencia[dice_roll][dice_roll2] ^ 1;
-		std::cout << dice_roll << "-" << dice_roll2 << std::endl;
+		//std::cout << dice_roll << "-" << dice_roll2 << std::endl;
 
 
 	}
@@ -204,37 +211,6 @@ int ** mutacion(int ** desendencia) {
 
 
 }
-
-void AG_Ruleta(int ** poblacion_inicial) {
-
-	int generaciones = NUMG;
-	int **  padres;
-	int ** desendencia;
-	float * lista_de_maximos = (float*)malloc(sizeof(float)*NUMG);
-	float * lista_de_minimos = (float*)malloc(sizeof(float)*NUMG);
-	int ** nueva_poblacion = poblacion_inicial;
-	std::cout << "NO. MAX//MIN" << std::endl;
-	//display(poblacion_inicial);
-	for (int i = 0; i < generaciones; i++) {
-		padres = seleccion_padres(Ruleta(aptitud(nueva_poblacion)), nueva_poblacion);
-		//display(padres);
-		desendencia = punto_de_cruza(padres);
-		//display(desendencia);
-		nueva_poblacion = mutacion(desendencia);
-		//display(nueva_poblacion);
-		lista_de_maximos[i] =maximo_float( probabilidad(nueva_poblacion))*100;
-		lista_de_minimos[i] = minimo_float(probabilidad(nueva_poblacion)) * 100;
-
-		std::cout << i+1<< ".- "<<lista_de_maximos[i] <<"//"<< lista_de_minimos[i]<<std::endl;
-		//display(nueva_poblacion);
-	}
-	//display(nueva_poblacion);
-	 graficar(2, lista_de_maximos,lista_de_minimos,maximo_float(lista_de_maximos));
-
-	
-
-}
-
 int ** Crear() {
 	int ** creacion;
 	creacion = (int **)malloc(sizeof(int*)*TAMP);
@@ -248,7 +224,7 @@ void display(int ** disp) {
 
 	std::cout << "********" << std::endl;
 	for (int i = 0; i < TAMP; i++) {
-		
+
 		for (int j = 0; j < NUMA; j++) {
 
 			std::cout << disp[i][j];
@@ -257,3 +233,57 @@ void display(int ** disp) {
 	}
 
 }
+
+int * Torneo(int ** poblacion_inicial) {
+
+	int * index = (int *)malloc(sizeof(int)*TAMP);
+	int k=0;
+	for (int j = 0;j < 2; j++) {
+		int ** baraja = barajeo(poblacion_inicial);
+		float * fitness = aptitud(baraja);
+		srand(time(NULL));
+
+		for (int i = 0; i < TAMP; i = i + 2) {
+
+			int dice_roll = std::rand() % 100 + 1;
+			if (dice_roll >= PROB) {
+				if (fitness[i] >= fitness[i + 1]) {
+					index[k] = i;
+					k++;
+				}
+				else {
+					index[k] = i + 1;
+					k++;
+				}
+			}
+			else {
+				if (fitness[i] >= fitness[i + 1]) {
+					index[k] = i +1;
+					k++;
+				}
+				else {
+					index[k] = i;
+					k++;
+				}
+			}
+		}
+		
+	}
+	
+
+	return index;
+	
+}
+
+int ** barajeo(int ** poblacion_inicial) {
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+
+	std::shuffle(poblacion_inicial, poblacion_inicial + TAMP, std::default_random_engine(seed));
+
+	return poblacion_inicial;
+
+}
+
+
+
+
